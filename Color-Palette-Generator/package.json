@@ -1,5 +1,5 @@
 {
-  "name": "recoil-todo",
+  "name": "color-palette-generator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,15 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.26",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.5",
-    "react-router-dom": "^6.9.0",
     "recoil": "^0.7.7",
-    "styled-components": "^5.3.8",
-    "styled-reset": "^4.4.5",
-    "uuid": "^9.0.0",
-    "uuidv4": "^6.2.13"
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
