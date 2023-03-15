@@ -2,20 +2,16 @@ import { useForm } from "react-hook-form";
 import { IForm } from "../types/todotypes";
 import { v4 } from "uuid";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { todoState } from "../recoil/todoState";
-
+import { todoCategoryState, todoState } from "../recoil/todoState";
 
 const CreateTodo = () => {
   const { register, handleSubmit, setValue } = useForm<IForm>();
   const setTodos = useSetRecoilState(todoState);
-
+  const category = useRecoilValue(todoCategoryState);
 
   const onSubmit = (data: IForm) => {
     setValue("todo", "");
-    setTodos((prev) => [
-      ...prev,
-      { id: v4(), text: data.todo, category: "Todo" },
-    ]);
+    setTodos((prev) => [...prev, { id: v4(), text: data.todo, category }]);
   };
 
   return (

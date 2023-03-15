@@ -1,10 +1,15 @@
 import { useSetRecoilState } from "recoil";
 import { todoState } from "../recoil/todoState";
-import { IButtonClickEvent, ITodo } from "../types/todotypes";
+import { Categories, IButtonClickEvent, ITodo } from "../types/todotypes";
 
 const Todo = ({ text, category, id }: ITodo) => {
   const setTodos = useSetRecoilState(todoState);
-  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+  const deleteHandle = () => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
+  const onClick = (e: IButtonClickEvent) => {
     const {
       currentTarget: { name },
     } = e;
@@ -22,20 +27,20 @@ const Todo = ({ text, category, id }: ITodo) => {
   };
   return (
     <li>
-      {}
+      <button onClick={deleteHandle}>X</button>
       {text}
-      {category !== "Todo" ? (
-        <button name="Todo" onClick={onClick}>
+      {category !== Categories.Todo ? (
+        <button name={Categories.Todo} onClick={onClick}>
           Todo
         </button>
       ) : null}
-      {category !== "Doing" ? (
-        <button name="Doing" onClick={onClick}>
+      {category !== Categories.Doing ? (
+        <button name={Categories.Doing} onClick={onClick}>
           Doing
         </button>
       ) : null}
-      {category !== "Done" ? (
-        <button name="Done" onClick={onClick}>
+      {category !== Categories.Done ? (
+        <button name={Categories.Done} onClick={onClick}>
           Done
         </button>
       ) : null}

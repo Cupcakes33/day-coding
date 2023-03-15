@@ -2,16 +2,26 @@ export interface IForm {
   todo: string;
 }
 
-export type categoryType = "Todo" | "Doing" | "Done";
-
 export interface ITodo {
   id: string;
   text: string;
-  category: categoryType;
+  category: Categories;
+}
+
+export enum Categories {
+  Todo = "Todo",
+  Doing = "Doing",
+  Done = "Done",
 }
 
 export interface IButtonClickEvent extends React.MouseEvent<HTMLButtonElement> {
   currentTarget: HTMLButtonElement & {
-    name: categoryType;
+    name: Categories;
+  };
+}
+
+export interface IFormEvent extends React.FormEvent<HTMLSelectElement> {
+  currentTarget: HTMLSelectElement & {
+    value: Categories;
   };
 }
