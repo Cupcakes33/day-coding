@@ -1,5 +1,5 @@
 import "../styles/css/todolist.css";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { todoCategoryState, todoSelector } from "../recoil/todoState";
 import CreateTodo from "../components/CreateTodo";
 import Todo from "../components/Todo";
