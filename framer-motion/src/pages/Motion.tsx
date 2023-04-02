@@ -1,29 +1,47 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import Modal from "../components/Modal";
+import useModal from "../hooks/useModal";
 
 const Motion = () => {
-  const biggerBoxRef = useRef<HTMLDivElement>(null);
+  const { openModal } = useModal();
+
+  const modalData = {
+    title: "modal",
+    contents: "modal",
+    callback: () => alert("modal"),
+  };
+
+  const modalOption = {
+    canCloseOnOverlayClick: true,
+    isCloseButton: true,
+  };
+
   const boxMotion = {
     hover: { scale: 1.5, rotateZ: 90 },
     click: { borderRadius: "100px" },
     drag: { backgroundColor: "#9a9a9a" },
   };
+
+  const x = useMotionValue(0);
+  const scale = useTransform(x, [-700, 0, 700], [2, 1, 0.1]);
+
+  useEffect(() => {
+    // x.onChange((e) => console.log(x.get()));
+    scale.onChange((e) => console.log(scale.get()));
+  }, [scale]);
   return (
     <>
       <StyledMotion.Wrapper>
-        <StyledMotion.BigBox ref={biggerBoxRef}>
-          <StyledMotion.Box
-            variants={boxMotion}
-            drag
-            dragSnapToOrigin
-            dragElastic={0.3}
-            dragConstraints={biggerBoxRef}
-            whileHover="hover"
-            whileDrag="drag"
-            whileTap="click"
-          />
-        </StyledMotion.BigBox>
+        {/* <StyledMotion.Box
+          variants={boxMotion}
+          style={{ x, scale }}
+          drag="x"
+          dragSnapToOrigin
+        /> */}
+        <button onClick={() => openModal(modalData)}>Open Modal</button>
+        <Modal modalOption={modalOption} />
       </StyledMotion.Wrapper>
     </>
   );
