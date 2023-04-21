@@ -1,7 +1,8 @@
+import DatePicker from "react-date-picker";
 import Motion from "./pages/Motion";
 
 const App = () => {
-  return <Motion />;
+  return <DatePicker />;
 };
 
 export default App;
